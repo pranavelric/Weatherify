@@ -18,4 +18,7 @@ object Constants {
     const val NOT_FOUND = "NOTFOUND"
 
     const val PERMISSION_CODE = 12345
+
+    const val API_KEY_QUERY =""
+    const val  API_KEY_VALUE = ""
 }
