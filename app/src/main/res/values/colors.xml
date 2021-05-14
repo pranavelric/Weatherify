@@ -7,4 +7,19 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <color name="primary">#040b14</color>
+    <color name="primary_light">#061120</color>
+    <color name="primary_dark">#03080E</color>
+
+    <color name="text_color">#000000</color>
+    <color name="background">#ffffff</color>
+    <color name="icon_color">#000000</color>
+
+    <color name="invert_icon_color">#ffffff</color>
+    <color name="fab_color">#040b14</color>
+    <color name="ripple">#ffffff</color>
+
+
 </resources>
