@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.weather.weatherify.R
 import com.weather.weatherify.databinding.FragmentHomeBinding
@@ -92,7 +93,7 @@ class HomeFragment : Fragment() {
 
         when (item.itemId) {
             R.id.action_settings -> {
-               // findNavController().navigate(R.id.action_mainFragment_to_settingsFragment)
+               findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)
                 return true
             }
 //            R.id.action_rate -> {

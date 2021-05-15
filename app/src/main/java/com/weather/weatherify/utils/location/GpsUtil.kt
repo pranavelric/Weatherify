@@ -3,17 +3,13 @@ package com.weather.weatherify.utils.location
 import android.app.Activity
 import android.content.Context
 import android.location.LocationManager
-import android.widget.Toast
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.LocationSettingsRequest
 import com.google.android.gms.location.LocationSettingsStatusCodes
 import com.google.android.gms.location.SettingsClient
-import com.weather.weatherify.data.model.Main
-import com.weather.weatherify.ui.activity.MainActivity
 import com.weather.weatherify.utils.Constants.GPS_REQUEST_CHECK_SETTINGS
-import com.weather.weatherify.utils.toast
 import com.weather.weatherify.utils.toast_long
 
 

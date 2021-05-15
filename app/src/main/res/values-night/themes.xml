@@ -15,4 +15,10 @@
         <item name="android:navigationBarColor">@color/background</item>
 
     </style>
+    <style name="roundedImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeBottomLeft">@dimen/_18sdp</item>
+        <item name="cornerSizeBottomRight">@dimen/_18sdp</item>
+
+    </style>
 </resources>

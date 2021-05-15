@@ -20,6 +20,6 @@
     <color name="invert_icon_color">#ffffff</color>
     <color name="fab_color">#040b14</color>
     <color name="ripple">#ffffff</color>
-
+<color name="heading_text">#040b14</color>
 
 </resources>

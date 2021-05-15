@@ -21,4 +21,5 @@
     <color name="fab_color">#FFB300</color>
     <color name="invert_icon_color">#000000</color>
     <color name="ripple">#000000</color>
+    <color name="heading_text">#FFB300</color>
 </resources>

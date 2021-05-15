@@ -10,7 +10,7 @@
         android:id="@+id/timeContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="@color/background">
 
         <ImageView
             android:id="@+id/background"
@@ -34,7 +34,7 @@
         android:id="@+id/bottomSheet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background"
+        android:background="@drawable/appbar_bg"
         android:orientation="vertical"
         app:behavior_hideable="true"
         app:behavior_peekHeight="@dimen/_340sdp"
@@ -46,12 +46,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="0dp"
-            android:layout_marginTop="@dimen/_1sdp"
-            android:elevation="@dimen/_1sdp"
+            android:elevation="0dp"
             android:fitsSystemWindows="false"
             app:elevation="@dimen/_2sdp"
             app:layout_constraintTop_toTopOf="parent"
-
+            android:background="@android:color/transparent"
+            android:backgroundTint="@android:color/transparent"
             >
 
 
@@ -59,8 +59,8 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/background"
-                android:elevation="@dimen/_8sdp"
+                android:background="@drawable/appbar_bg"
+                android:elevation="@dimen/_1sdp"
                 android:gravity="center"
                 app:layout_scrollFlags="enterAlways"
                 app:menu="@menu/home_menu"

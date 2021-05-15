@@ -27,8 +27,8 @@ class MyApplication : Application() {
 //        }
 
         ThemeManager.applyTheme(
-            sp.getString(Constants.THEME_PREF, Constants.AUTO_BATTERY_MODE)
-                ?: Constants.AUTO_BATTERY_MODE
+            sp.getString(Constants.THEME_PREF, Constants.FOLLOW_SYSTEM_MODE)
+                ?: Constants.FOLLOW_SYSTEM_MODE
         )
 
 
