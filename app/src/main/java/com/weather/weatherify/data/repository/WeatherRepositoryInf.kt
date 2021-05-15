@@ -24,11 +24,11 @@ interface WeatherRepositoryInf {
 
     // local
 
-    suspend fun getWeatherFromDatabase(): ResponseWeather
-    suspend fun saveWeatherToDatabase(weather: ResponseWeather)
-    suspend fun deleteWeatherFromDatabase(weather: ResponseWeather)
+    suspend fun getWeatherFromDatabase(): ResponseWeather?
+    suspend fun saveWeatherToDatabase(weather: ResponseWeather?):Unit
+    suspend fun deleteWeatherFromDatabase(weather: ResponseWeather?):Unit
     suspend fun deleteAllWeatherFromDatabase()
-    suspend fun getAllWeatherFromDatabase():List<NetworkWeatherForecast>?
+    suspend fun getAllWeatherFromDatabase():List<DBWeather>
 
 
 

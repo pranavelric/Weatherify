@@ -7,6 +7,7 @@ import com.weather.weatherify.utils.Constants.APP_THEME
 import com.weather.weatherify.utils.Constants.BACKGROUND_IMAGE
 import com.weather.weatherify.utils.Constants.NIGHT_MODE_ENABLED
 import com.weather.weatherify.utils.Constants.NOT_FOUND
+import com.weather.weatherify.utils.Constants.THEME_PREF
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -35,15 +36,15 @@ class MySharedPrefrences @Inject constructor(@ApplicationContext context: Contex
         return sp.getBoolean(NIGHT_MODE_ENABLED, false)
     }
 
-    fun setTheme(id: Int) {
-        editor.putInt(APP_THEME, id)
+
+    fun setThemePref(themePref: String) {
+        editor.putString(THEME_PREF, themePref)
         editor.commit()
     }
-
-    fun getAppTheme(): Int {
-
-        return sp.getInt(APP_THEME, R.style.Theme_Weatherify)
+    fun getThemePref():String{
+        return sp.getString(THEME_PREF, Constants.FOLLOW_SYSTEM_MODE)?: Constants.FOLLOW_SYSTEM_MODE
     }
+
 
     fun setBackgroundImage(path: String) {
         editor.putString(BACKGROUND_IMAGE, path)

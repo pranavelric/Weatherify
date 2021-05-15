@@ -18,13 +18,12 @@ data class DBWeather (
     val cityId:Int,
     @ColumnInfo(name="city_name")
     val cityName:String?,
-
     @Embedded
-    val wind: Wind,
+    val wind: Wind?,
     @ColumnInfo(name="weather_details")
     val weatherDescription:List<Weather>,
     @Embedded
-    val weatherConditions: Main
+    val weatherConditions: Main?
 
 
 

@@ -17,7 +17,7 @@ data class ResponseWeather(
     @Json(name = "dt")
     val dt: Int?,
     @Json(name = "id")
-    val id: Int?,
+    val id: Int,
     @Json(name = "main")
     val main: Main?,
     @Json(name = "name")
