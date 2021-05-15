@@ -2,9 +2,10 @@ package com.weather.weatherify.utils
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.weather.weatherify.R
-import com.weather.weatherify.utils.Constants.APP_THEME
+import com.weather.weatherify.data.model.Coord
 import com.weather.weatherify.utils.Constants.BACKGROUND_IMAGE
+import com.weather.weatherify.utils.Constants.CITY_ID
+import com.weather.weatherify.utils.Constants.CITY_LOCATION
 import com.weather.weatherify.utils.Constants.NIGHT_MODE_ENABLED
 import com.weather.weatherify.utils.Constants.NOT_FOUND
 import com.weather.weatherify.utils.Constants.THEME_PREF
@@ -41,8 +42,10 @@ class MySharedPrefrences @Inject constructor(@ApplicationContext context: Contex
         editor.putString(THEME_PREF, themePref)
         editor.commit()
     }
-    fun getThemePref():String{
-        return sp.getString(THEME_PREF, Constants.FOLLOW_SYSTEM_MODE)?: Constants.FOLLOW_SYSTEM_MODE
+
+    fun getThemePref(): String {
+        return sp.getString(THEME_PREF, Constants.FOLLOW_SYSTEM_MODE)
+            ?: Constants.FOLLOW_SYSTEM_MODE
     }
 
 
@@ -54,5 +57,30 @@ class MySharedPrefrences @Inject constructor(@ApplicationContext context: Contex
     fun getBrackgroundImage(): String? {
         return sp.getString(BACKGROUND_IMAGE, NOT_FOUND)
     }
+
+
+    fun saveCityId(cityId: Int) {
+        editor.putInt(CITY_ID, cityId)
+        editor.commit()
+    }
+
+    fun getCityId() = sp.getInt(CITY_ID, 0)
+
+    fun saveLocation(location: Coord) {
+        val lat = location.lat
+        val lon = location.lon
+        val loc = "$lat,$lon"
+        editor.putString(CITY_LOCATION, loc)
+
+    }
+
+    fun getLocation(): Coord {
+        val loc = sp.getString(CITY_LOCATION, null)
+        val arr = loc?.split(",")
+        val lat = arr?.get(0)?.toDouble()
+        val lon = arr?.get(1)?.toDouble()
+        return Coord(lat, lon)
+    }
+
 
 }

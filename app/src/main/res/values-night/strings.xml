@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">weatherify</string>
+    <string name="app_name">Weatherify</string>
+
+
+    <string name="enable_gps">Enable your GPS and restart!</string>
+    <string name="location_permission">Location Permission</string>
+    <string name="access_location_message">This application requires access to your location to function!</string>
+    <string name="gps_required_message">GPS is required for this application to function!</string>
+    <string name="no">No</string>
+    <string name="ask_me">Ask me</string>
 </resources>

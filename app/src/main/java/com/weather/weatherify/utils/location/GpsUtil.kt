@@ -10,12 +10,14 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.LocationSettingsRequest
 import com.google.android.gms.location.LocationSettingsStatusCodes
 import com.google.android.gms.location.SettingsClient
+import com.weather.weatherify.data.model.Main
+import com.weather.weatherify.ui.activity.MainActivity
 import com.weather.weatherify.utils.Constants.GPS_REQUEST_CHECK_SETTINGS
 import com.weather.weatherify.utils.toast
 import com.weather.weatherify.utils.toast_long
 
 
-class GpsUtil(private val context: Context) {
+class GpsUtil(private val context: Context,private val activity: Activity) {
     private val settingsClient: SettingsClient = LocationServices.getSettingsClient(context)
     private val locationSettingsRequest: LocationSettingsRequest?
     private val locationManager =
@@ -34,16 +36,16 @@ class GpsUtil(private val context: Context) {
         } else {
             settingsClient
                 .checkLocationSettings(locationSettingsRequest)
-                .addOnSuccessListener(context as Activity) {
+                .addOnSuccessListener(activity) {
                     OnGpsListener?.gpsStatus(true)
                 }.addOnFailureListener {
-                }.addOnFailureListener(context) { exception ->
+                }.addOnFailureListener(activity) { exception ->
 
                     when ((exception as ApiException).statusCode) {
                         LocationSettingsStatusCodes.RESOLUTION_REQUIRED -> {
                             try {
                                 val resApiException = exception as ResolvableApiException
-                                resApiException.startResolutionForResult(context, GPS_REQUEST_CHECK_SETTINGS)
+                                resApiException.startResolutionForResult(activity, GPS_REQUEST_CHECK_SETTINGS)
                             } catch (sendIntentException: Exception) {
                                 sendIntentException.printStackTrace()
 

@@ -1,5 +1,7 @@
 package com.weather.weatherify.di
 
+import com.weather.weatherify.data.local.WeatherLocalDataSource
+import com.weather.weatherify.data.remote.WeatherRemoteDataSource
 import com.weather.weatherify.data.remote.api.WeatherApi
 import com.weather.weatherify.data.repository.WeatherRepository
 import dagger.Module
@@ -15,7 +17,7 @@ class RepositoryModule {
 
     @Singleton
     @Provides
-    fun providesWeatherRepository(api: WeatherApi): WeatherRepository {
-        return WeatherRepository(api)
+    fun providesWeatherRepository(weatherLocalDataSource: WeatherLocalDataSource,weatherRemoteDataSource: WeatherRemoteDataSource): WeatherRepository {
+        return WeatherRepository(weatherRemoteDataSource,weatherLocalDataSource)
     }
 }

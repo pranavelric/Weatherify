@@ -1,5 +1,8 @@
 package com.weather.weatherify.di
 
+import android.app.Application
+import android.content.Context
+import com.weather.weatherify.utils.location.LocationLiveData
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,4 +18,21 @@ class AppModule {
     @Singleton
     @Provides
     fun providesApplicationScope() = CoroutineScope(SupervisorJob())
+
+    @Provides
+    @Singleton
+    fun provideContext(application: Application): Context {
+        return application.applicationContext
+    }
+
+
+    @Provides
+    @Singleton
+    fun provideLocationLiveData(context: Context): LocationLiveData {
+        return LocationLiveData(context)
+    }
+
+
+
+
 }

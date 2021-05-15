@@ -24,11 +24,12 @@ object Constants {
 
     //table names
     const val TABLE_CITY = "city"
-
+    const val CITY_ID = "CITY_ID"
+    const val CITY_LOCATION="CITY_LOCATION"
     const val BASE_URL = "http://api.openweathermap.org/data/2.5/"
 
     //Theme types
-    const val THEME_PREF="THEME_PREF"
+    const val THEME_PREF = "THEME_PREF"
     const val LIGHT_MODE = "Light"
     const val DARK_MODE = "Dark"
     const val AUTO_BATTERY_MODE = "Auto-battery"
