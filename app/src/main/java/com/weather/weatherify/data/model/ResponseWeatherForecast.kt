@@ -1,85 +1,47 @@
 package com.weather.weatherify.data.model
 
+import com.squareup.moshi.Json
 
 data class ResponseWeatherForecast(
-    @SerializedName("daily")
-    val daily: List<Daily>,
-    @SerializedName("lat")
-    val lat: Double,
-    @SerializedName("lon")
-    val lon: Double,
-    @SerializedName("timezone")
-    val timezone: String,
-    @SerializedName("timezone_offset")
-    val timezoneOffset: Int
+
+    @Json(name ="cod")
+    val cod:String?,
+    @Json(name ="list")
+    val daily: List<NetworkWeatherForecast>?,
+    @Json(name="city")
+    val city:City?
+
 )
 
-data class Daily(
-    @SerializedName("clouds")
-    val clouds: Int,
-    @SerializedName("dew_point")
-    val dewPoint: Double,
-    @SerializedName("dt")
-    val dt: Int,
-    @SerializedName("feels_like")
-    val feelsLike: FeelsLike,
-    @SerializedName("humidity")
-    val humidity: Int,
-    @SerializedName("pop")
-    val pop: Double,
-    @SerializedName("pressure")
-    val pressure: Int,
-    @SerializedName("rain")
-    val rain: Double,
-    @SerializedName("sunrise")
-    val sunrise: Int,
-    @SerializedName("sunset")
-    val sunset: Int,
-    @SerializedName("temp")
-    val temp: Temp,
-    @SerializedName("uvi")
-    val uvi: Double,
-    @SerializedName("weather")
-    val weather: List<WeatherF>,
-    @SerializedName("wind_deg")
-    val windDeg: Int,
-    @SerializedName("wind_speed")
-    val windSpeed: Double
+data class NetworkWeatherForecast(
+
+
+    @Json(name = "clouds")
+    val clouds: Clouds?,
+
+    @Json(name = "dt")
+    val dt: Long?,
+
+    @Json(name = "main")
+    val main: Main?,
+
+    @Json(name = "dt_txt")
+    val dateText: String?,
+
+    @Json(name = "sys")
+    val sys: SysPod?,
+
+    @Json(name = "visibility")
+    val visibility: Int?,
+    @Json(name = "weather")
+    val weather: List<Weather>,
+    @Json(name = "wind")
+    val wind: Wind?
+
 )
 
-data class FeelsLike(
-    @SerializedName("day")
-    val day: Double,
-    @SerializedName("eve")
-    val eve: Double,
-    @SerializedName("morn")
-    val morn: Double,
-    @SerializedName("night")
-    val night: Double
-)
+data class SysPod(
+    @Json(name="pod")
+    val pod:String?
 
-data class Temp(
-    @SerializedName("day")
-    val day: Double,
-    @SerializedName("eve")
-    val eve: Double,
-    @SerializedName("max")
-    val max: Double,
-    @SerializedName("min")
-    val min: Double,
-    @SerializedName("morn")
-    val morn: Double,
-    @SerializedName("night")
-    val night: Double
-)
-
-data class WeatherF(
-    @SerializedName("description")
-    val description: String,
-    @SerializedName("icon")
-    val icon: String,
-    @SerializedName("id")
-    val id: Int,
-    @SerializedName("main")
-    val main: String
 )

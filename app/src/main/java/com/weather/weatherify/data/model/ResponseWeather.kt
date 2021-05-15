@@ -1,91 +1,96 @@
 package com.weather.weatherify.data.model
-import com.google.gson.annotations.SerializedName
 
+import android.os.Parcelable
+import com.squareup.moshi.Json
+import kotlinx.android.parcel.Parcelize
 
 
 data class ResponseWeather(
-    @SerializedName("base")
-    val base: String,
-    @SerializedName("clouds")
-    val clouds: Clouds,
-    @SerializedName("cod")
-    val cod: Int,
-    @SerializedName("coord")
-    val coord: Coord,
-    @SerializedName("dt")
-    val dt: Int,
-    @SerializedName("id")
-    val id: Int,
-    @SerializedName("main")
-    val main: Main,
-    @SerializedName("name")
-    val name: String,
-    @SerializedName("sys")
-    val sys: Sys,
-    @SerializedName("timezone")
-    val timezone: Int,
-    @SerializedName("visibility")
-    val visibility: Int,
-    @SerializedName("weather")
+    @Json(name = "base")
+    val base: String?,
+    @Json(name = "clouds")
+    val clouds: Clouds?,
+    @Json(name = "cod")
+    val cod: Int?,
+    @Json(name = "coord")
+    val coord: Coord?,
+    @Json(name = "dt")
+    val dt: Int?,
+    @Json(name = "id")
+    val id: Int?,
+    @Json(name = "main")
+    val main: Main?,
+    @Json(name = "name")
+    val name: String?,
+    @Json(name = "sys")
+    val sys: Sys?,
+    @Json(name = "timezone")
+    val timezone: Int?,
+    @Json(name = "visibility")
+    val visibility: Int?,
+    @Json(name = "weather")
     val weather: List<Weather>,
-    @SerializedName("wind")
-    val wind: Wind
+    @Json(name = "wind")
+    val wind: Wind?
 )
 
 data class Clouds(
-    @SerializedName("all")
-    val all: Int
+    @Json(name = "all")
+    val all: Int?
 )
 
 data class Coord(
-    @SerializedName("lat")
-    val lat: Double,
-    @SerializedName("lon")
-    val lon: Double
+    @Json(name = "lat")
+    val lat: Double?,
+    @Json(name = "lon")
+    val lon: Double?
 )
 
+@Parcelize
 data class Main(
-    @SerializedName("feels_like")
-    val feelsLike: Double,
-    @SerializedName("grnd_level")
-    val grndLevel: Int,
-    @SerializedName("humidity")
-    val humidity: Int,
-    @SerializedName("pressure")
-    val pressure: Int,
-    @SerializedName("sea_level")
-    val seaLevel: Int,
-    @SerializedName("temp")
-    val temp: Double,
-    @SerializedName("temp_max")
-    val tempMax: Double,
-    @SerializedName("temp_min")
-    val tempMin: Double
-)
+    @Json(name = "feels_like")
+    val feelsLike: Double?,
+    @Json(name = "grnd_level")
+    val grndLevel: Int?,
+    @Json(name = "humidity")
+    val humidity: Int?,
+    @Json(name = "pressure")
+    val pressure: Int?,
+    @Json(name = "sea_level")
+    val seaLevel: Int?,
+    @Json(name = "temp")
+    val temp: Double?,
+    @Json(name = "temp_max")
+    val tempMax: Double?,
+    @Json(name = "temp_min")
+    val tempMin: Double?
+): Parcelable
 
 data class Sys(
-    @SerializedName("country")
-    val country: String,
-    @SerializedName("sunrise")
-    val sunrise: Int,
-    @SerializedName("sunset")
-    val sunset: Int
+    @Json(name = "country")
+    val country: String?,
+    @Json(name = "sunrise")
+    val sunrise: Int?,
+    @Json(name = "sunset")
+    val sunset: Int?
 )
 
+@Parcelize
 data class Weather(
-    @SerializedName("description")
-    val description: String,
-    @SerializedName("icon")
-    val icon: String,
-    @SerializedName("id")
+    @Json(name = "description")
+    val description: String?,
+    @Json(name = "icon")
+    val icon: String?,
+    @Json(name = "id")
     val id: Int,
-    @SerializedName("main")
-    val main: String
-)
+    @Json(name = "main")
+    val main: String?
+):Parcelable
 
+@Parcelize
 data class Wind(
-    @SerializedName("deg")
-    val deg: Int,
-    @SerializedName("speed")
-    val speed: Double
-)
+    @Json(name = "deg")
+    val deg: Int?,
+    @Json(name = "speed")
+    val speed: Double?
+):Parcelable
