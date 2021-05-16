@@ -65,9 +65,9 @@ interface WeatherApi {
     ): Response<ResponseOneCallWeatherForecast>
 
 //onecall
-    //  https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&appid=f6c3ad76ffa170293b68f73828d72a9a&units=metric
+    //  https://api.openweathermap.org/data/2.5/onecall?lat=73.8957&lon=29.3221&appid=f6c3ad76ffa170293b68f73828d72a9a&units=metric
 
-
+//lat=73.8957, lon=29.3221
 //    http://api.openweathermap.org/data/2.5/forecast?q=suratgarh&appid=f6c3ad76ffa170293b68f73828d72a9a&units=metric
 
 }

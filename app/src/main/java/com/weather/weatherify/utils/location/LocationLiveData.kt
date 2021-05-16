@@ -51,8 +51,8 @@ class LocationLiveData(context: Context) : LiveData<Coord>() {
 
     private fun setLocationData(location: Location) {
         value = Coord(
-            lat = location.longitude,
-            lon = location.latitude
+            lat = location.latitude,
+            lon = location.longitude
         )
     }
 

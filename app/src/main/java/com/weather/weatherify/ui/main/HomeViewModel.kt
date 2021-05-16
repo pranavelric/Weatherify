@@ -28,7 +28,6 @@ class HomeViewModel @ViewModelInject constructor(val repository: WeatherReposito
     val weatherData: LiveData<ResponseState<ResponseWeather?>> get() = _weatherData
 
 
-
     fun getWeatherByLocation(coord: Coord) = viewModelScope.launch {
         safeGetWeatherByLocation(coord)
     }

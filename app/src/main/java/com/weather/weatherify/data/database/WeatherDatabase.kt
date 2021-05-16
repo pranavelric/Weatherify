@@ -12,7 +12,7 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 
-@Database(entities = [DBWeather::class], version = 1, exportSchema = true)
+@Database(entities = [DBWeather::class], version = 1, exportSchema = false)
 @TypeConverters(MyTypeConverter::class)
 abstract class WeatherDatabase : RoomDatabase() {
 

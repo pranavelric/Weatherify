@@ -14,6 +14,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.movies.animefied.utils.ResponseState
 import com.weather.weatherify.R
 import com.weather.weatherify.data.model.Main
+import com.weather.weatherify.data.model.ResponseWeather
 import com.weather.weatherify.databinding.FragmentHomeBinding
 import com.weather.weatherify.ui.activity.MainActivity
 import com.weather.weatherify.utils.*
@@ -56,12 +57,15 @@ class HomeFragment : Fragment() {
 
 
     private fun getData() {
+        binding.loadingLay.loadingLayout.visible()
+        initiateRefresh()
+
 
     }
 
     private fun setClickListeners() {
         binding.swipeRefreshId.setOnRefreshListener {
-            binding.loadingLayout.visible()
+            binding.loadingLay.loadingLayout.visible()
             initiateRefresh()
             binding.swipeRefreshId.isRefreshing = false
         }
@@ -73,15 +77,16 @@ class HomeFragment : Fragment() {
                     weather?.let { weather_state->
                         when(weather_state){
                             is ResponseState.Success -> {
-                                binding.loadingLayout.gone()
-                                Log.d("RRR", "observeViewModel:${weather_state . data} ")
-                                 }
+                                binding.loadingLay.loadingLayout.gone()
+                                setData(weather_state.data)
+                                Log.d("RRR", "observeViewModel: ${weather_state.data}")
+                            }
                             is ResponseState.Error -> {
-                                binding.loadingLayout.gone()
-                                Log.d("RRR", "observeViewModel: ${weather_state.message}")
+                                binding.loadingLay.loadingLayout.gone()
+                                weather_state.message?.let { binding.root.snackbar(it) }
                             }
                             is ResponseState.Loading->{
-                                binding.loadingLayout.visible()
+                                binding.loadingLay.loadingLayout.visible()
                             }
                         }
 
@@ -92,9 +97,26 @@ class HomeFragment : Fragment() {
 
     }
 
+    private fun setData(data: ResponseWeather?) {
+
+        binding.weatherInText.text = data?.name
+        binding.dateText.text = homeViewModel.currentSystemTime()
+        binding.weatherTemperature.text = data?.main?.temp.toString()+"°C"
+        binding.weatherMinMax.text = data?.main?.temp_max.toString()+"°"+"/"+data?.main?.temp_min.toString()+"°"
+        binding.weatherMain.text = data?.weather?.get(0)?.description
+        binding.humidityText.text = data?.main?.humidity.toString()+"%"
+        binding.pressureText.text= data?.main?.pressure.toString()+"hPa"
+        binding.windSpeedText.text =data?.wind?.speed.toString()+"m/s"
+        context?.let { binding.weatherIcon.getIconResources(it,data?.weather?.get(0)?.description) }
+
+
+
+
+    }
+
 
     private fun initiateRefresh() {
-        (activity as MainActivity).locationLiveData.observe(viewLifecycleOwner, { location ->
+        (activity as MainActivity).locationLiveData.observeOnce(viewLifecycleOwner, { location ->
             if (location != null) {
                 homeViewModel.getWeatherByLocation(location)
             } else {

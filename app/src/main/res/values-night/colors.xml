@@ -13,7 +13,7 @@
     <color name="primary">#FFB300</color>
     <color name="primary_light">#FFBA17</color>
     <color name="primary_dark">#C38900</color>
-
+    <color name="primary_transparent">#86FFB300</color>
     <color name="text_color">#ffffff</color>
     <color name="background">#040b14</color>
     <color name="background_transparent">#83040b14</color>

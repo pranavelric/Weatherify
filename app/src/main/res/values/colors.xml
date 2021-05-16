@@ -13,6 +13,8 @@
     <color name="primary_light">#061120</color>
     <color name="primary_dark">#03080E</color>
 
+    <color name="primary_transparent">#86040B14</color>
+
     <color name="text_color">#000000</color>
     <color name="background">#ffffff</color>
     <color name="background_transparent">#83FFFFFF</color>

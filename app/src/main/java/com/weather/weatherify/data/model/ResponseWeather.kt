@@ -49,21 +49,21 @@ data class Coord(
 @Parcelize
 data class Main(
     @Json(name = "feels_like")
-    val feelsLike: Double?,
+    val feels_like: Double?,
     @Json(name = "grnd_level")
-    val grndLevel: Int?,
+    val grnd_Level: Int?,
     @Json(name = "humidity")
     val humidity: Int?,
     @Json(name = "pressure")
     val pressure: Int?,
     @Json(name = "sea_level")
-    val seaLevel: Int?,
+    val sea_level: Int?,
     @Json(name = "temp")
     val temp: Double?,
     @Json(name = "temp_max")
-    val tempMax: Double?,
+    val temp_max: Double?,
     @Json(name = "temp_min")
-    val tempMin: Double?
+    val temp_min: Double?
 ): Parcelable
 
 data class Sys(

@@ -13,18 +13,18 @@ data class ResponseOneCallWeatherForecast(
     @Json(name ="timezone")
     val timezone: String?,
     @Json(name ="timezone_offset")
-    val timezoneOffset: Int?
+    val timezone_offset: Int?
 )
 
 data class Daily(
     @Json(name ="clouds")
     val clouds: Int?,
     @Json(name ="dew_point")
-    val dewPoint: Double?,
+    val dew_point: Double?,
     @Json(name ="dt")
     val dt: Int?,
     @Json(name ="feels_like")
-    val feelsLike: FeelsLike?,
+    val feels_like: FeelsLike?,
     @Json(name ="humidity")
     val humidity: Int?,
     @Json(name ="pop")
@@ -44,9 +44,9 @@ data class Daily(
     @Json(name ="weather")
     val weather: List<Weather>?,
     @Json(name ="wind_deg")
-    val windDeg: Int?,
+    val wind_deg: Int?,
     @Json(name ="wind_speed")
-    val windSpeed: Double?
+    val wind_speed: Double?
 )
 
 data class FeelsLike(

@@ -15,11 +15,11 @@ import dagger.hilt.android.scopes.ActivityScoped
 @InstallIn(ApplicationComponent::class)
 abstract  class DataSourceModule {
 
-    @ActivityScoped
+
     @Binds
     abstract fun bindWeatherLocalDataSource(weatherLocalDataSourceImpl: WeatherLocalDataSourceImpl): WeatherLocalDataSource
 
-    @ActivityScoped
+
     @Binds
     abstract fun bindWeatherRemoteDataSource(weatherRemoteDataSourceImpl: WeatherRemoteDataSourceImpl): WeatherRemoteDataSource
 
