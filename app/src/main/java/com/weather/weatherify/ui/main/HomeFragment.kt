@@ -1,5 +1,6 @@
 package com.weather.weatherify.ui.main
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -46,6 +47,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun setViews() {
+
+        binding.background.getBackgroundImage(Uri.parse((activity as MainActivity).mySharedPrefrences.getBrackgroundImage()))
+
+
 
     }
 

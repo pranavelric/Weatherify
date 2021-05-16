@@ -1,6 +1,7 @@
 package com.weather.weatherify
 
 import android.app.Application
+import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import com.weather.weatherify.utils.Constants
 import com.weather.weatherify.utils.ThemeManager
@@ -30,6 +31,7 @@ class MyApplication : Application() {
             sp.getString(Constants.THEME_PREF, Constants.FOLLOW_SYSTEM_MODE)
                 ?: Constants.FOLLOW_SYSTEM_MODE
         )
+
 
 
     }

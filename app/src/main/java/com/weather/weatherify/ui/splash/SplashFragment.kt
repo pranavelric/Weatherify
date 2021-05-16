@@ -32,7 +32,8 @@ class SplashFragment : Fragment() {
     companion object {
         private val REQUIRED_PERMISSIONS = arrayOf(
             Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.ACCESS_COARSE_LOCATION
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.READ_EXTERNAL_STORAGE
         )
         private const val LOCATION_REQUEST_CODE = 121
     }
@@ -78,15 +79,14 @@ class SplashFragment : Fragment() {
     private fun invokeLocationAction() {
         when {
             allPermissionGranted() -> {
+                goToMain()
                 (activity as MainActivity).locationLiveData.observe(
                     viewLifecycleOwner,
                     { location ->
                         if (location != null) {
-                            goToMain()
                             //get weather here
                             Log.d("RRR", "invokeLocationAction:${location.lat} ${location.lon} ")
                         }
-
                     })
             }
 

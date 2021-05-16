@@ -4,7 +4,7 @@ object Constants {
 
     const val SHARED_PREFRENCE = "SHARED_PREFRENCES"
     const val NIGHT_MODE_ENABLED = "NIGHT_MODE_ENABLED"
-    const val APP_THEME = "APP_THEME"
+
 
 
     const val CHANNEL_ID = "CHANNEL_ID"
@@ -35,5 +35,12 @@ object Constants {
     const val AUTO_BATTERY_MODE = "Auto-battery"
     const val FOLLOW_SYSTEM_MODE = "System"
 
+    //Units of measurement
+    const val UNITS_QUERY = "units"
+    const val METRIC = "metric"
+
+    const val UNITS_OF_MEASURE = "UNITS_OF_MEASURE"
+    const val CELSIUS = "Celsius (°C)"
+    const val FAHRENHEIT = "Fahrenheit (°F)"
 
 }

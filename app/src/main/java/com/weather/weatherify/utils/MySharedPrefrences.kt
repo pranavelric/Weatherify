@@ -4,11 +4,14 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.weather.weatherify.data.model.Coord
 import com.weather.weatherify.utils.Constants.BACKGROUND_IMAGE
+import com.weather.weatherify.utils.Constants.CELSIUS
 import com.weather.weatherify.utils.Constants.CITY_ID
 import com.weather.weatherify.utils.Constants.CITY_LOCATION
+import com.weather.weatherify.utils.Constants.METRIC
 import com.weather.weatherify.utils.Constants.NIGHT_MODE_ENABLED
 import com.weather.weatherify.utils.Constants.NOT_FOUND
 import com.weather.weatherify.utils.Constants.THEME_PREF
+import com.weather.weatherify.utils.Constants.UNITS_OF_MEASURE
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -82,5 +85,14 @@ class MySharedPrefrences @Inject constructor(@ApplicationContext context: Contex
         return Coord(lat, lon)
     }
 
+
+    fun setUnitsOfMeasurement(uom: String) {
+        editor.putString(UNITS_OF_MEASURE, uom)
+        editor.commit()
+    }
+
+    fun getUnitsOfMeasurement(): String {
+        return sp.getString(UNITS_OF_MEASURE, CELSIUS) ?: CELSIUS
+    }
 
 }

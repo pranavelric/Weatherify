@@ -15,8 +15,8 @@
         <ImageView
             android:id="@+id/background"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scaleType="fitXY"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
             android:src="@drawable/clear"
             app:layout_constraintTop_toTopOf="parent" />
 

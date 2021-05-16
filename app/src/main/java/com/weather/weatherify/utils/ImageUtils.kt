@@ -41,7 +41,7 @@ fun ImageView.getBackgroundImage(backgroundUrl: Uri?) {
                 Glide.with(it)
                     .load(  AppCompatResources.getDrawable(
                         it,
-                        R.drawable.ic_launcher_background
+                        R.drawable.less_cloud_evening
                     )).into(this)
             }
         }

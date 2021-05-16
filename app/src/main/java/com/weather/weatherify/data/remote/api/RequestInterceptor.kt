@@ -10,9 +10,11 @@ import javax.inject.Singleton
 class RequestInterceptor @Inject constructor() : Interceptor {
 
         override fun intercept(chain: Interceptor.Chain): Response {
+
             val url = chain.request().url
                 .newBuilder()
                 .addQueryParameter(Constants.API_KEY_QUERY, Constants.API_KEY_VALUE)
+                .addQueryParameter(Constants.UNITS_QUERY,Constants.METRIC)
                 .build()
             val request = chain.request().newBuilder().url(url).build()
             return chain.proceed(request)
