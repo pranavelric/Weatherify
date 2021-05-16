@@ -15,11 +15,14 @@
 
     <color name="text_color">#000000</color>
     <color name="background">#ffffff</color>
+    <color name="background_transparent">#83FFFFFF</color>
     <color name="icon_color">#000000</color>
 
     <color name="invert_icon_color">#ffffff</color>
     <color name="fab_color">#040b14</color>
     <color name="ripple">#ffffff</color>
 <color name="heading_text">#040b14</color>
+
+    <color name="card_icons_color">#0F538F</color>
 
 </resources>

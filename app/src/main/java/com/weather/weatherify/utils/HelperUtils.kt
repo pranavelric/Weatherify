@@ -7,6 +7,9 @@ import android.net.Uri
 import android.os.Build
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 
 
 fun checkAboveOreo(): Boolean {
@@ -66,4 +69,19 @@ fun Context.createThemeDialog(): String {
     dialog.show()
 
     return theme
+}
+
+
+
+
+fun <T> LiveData<T>.observeOnce(lifecycleOwner: LifecycleOwner, observer: Observer<T>) {
+    observe(
+        lifecycleOwner,
+        object : Observer<T> {
+            override fun onChanged(t: T?) {
+                observer.onChanged(t)
+                removeObserver(this)
+            }
+        }
+    )
 }

@@ -55,9 +55,8 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        //setFullScreenWithBtmNav()
-        setFullScreen()
         setFullScreenForNotch()
+        setFullScreenWithBtmNav()
     }
 
     override fun onSupportNavigateUp(): Boolean {
