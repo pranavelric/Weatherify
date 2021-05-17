@@ -11,6 +11,8 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 fun Context.toast(message: String) {
@@ -65,7 +67,7 @@ fun Context.share(link: String?, type: String) {
     val shareIntent = Intent()
     shareIntent.action = Intent.ACTION_SEND
 
-    shareIntent.type="text/plain"
+    shareIntent.type = "text/plain"
     shareIntent.putExtra(
         Intent.EXTRA_TEXT,
         "See this amazing alarm app: http://www.amazon.com/gp/mas/dl/android?p=$packageName"
@@ -91,15 +93,23 @@ fun Activity.getStatusBarHeight(): Int {
     else Rect().apply { window.decorView.getWindowVisibleDisplayFrame(this) }.top
 }
 
-fun View.visible(){
-    this.visibility=View.VISIBLE
+fun View.visible() {
+    this.visibility = View.VISIBLE
 }
 
-fun View.gone(){
-    this.visibility=View.GONE
+fun View.gone() {
+    this.visibility = View.GONE
 }
-fun View.invisible(){
-    this.visibility=View.INVISIBLE
+
+fun View.invisible() {
+    this.visibility = View.INVISIBLE
+}
+
+fun getTimeFromMillis(timeInMillis: Long): String {
+    val date = Date(timeInMillis)
+    val dateFormat = SimpleDateFormat("EEEE MMM d, hh:mm aaa")
+    return dateFormat.format(date)
+
 }
 
 

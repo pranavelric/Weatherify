@@ -13,12 +13,14 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.movies.animefied.utils.ResponseState
 import com.weather.weatherify.R
+import com.weather.weatherify.adapters.WeatherForecastAdapter
 import com.weather.weatherify.data.model.Main
 import com.weather.weatherify.data.model.ResponseWeather
 import com.weather.weatherify.databinding.FragmentHomeBinding
 import com.weather.weatherify.ui.activity.MainActivity
 import com.weather.weatherify.utils.*
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
@@ -29,6 +31,9 @@ class HomeFragment : Fragment() {
     private val homeViewModel: HomeViewModel by lazy {
         ViewModelProvider(this).get(HomeViewModel::class.java)
     }
+
+    @Inject
+    lateinit var weatherForecastAdapter: WeatherForecastAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,8 +57,8 @@ class HomeFragment : Fragment() {
         setClickListeners()
         observeViewModel()
 
-    }
 
+    }
 
 
     private fun getData() {
@@ -72,28 +77,69 @@ class HomeFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        with(homeViewModel){
-                weatherData.observe(viewLifecycleOwner){weather->
-                    weather?.let { weather_state->
-                        when(weather_state){
-                            is ResponseState.Success -> {
-                                binding.loadingLay.loadingLayout.gone()
-                                setData(weather_state.data)
-                                Log.d("RRR", "observeViewModel: ${weather_state.data}")
+        with(homeViewModel) {
+            weatherData.observe(viewLifecycleOwner) { weather ->
+                weather?.let { weather_state ->
+                    when (weather_state) {
+                        is ResponseState.Success -> {
+                            binding.loadingLay.loadingLayout.gone()
+                            setData(weather_state.data)
+
+                        }
+                        is ResponseState.Error -> {
+                            binding.loadingLay.loadingLayout.gone()
+                            weather_state.message?.let { binding.root.snackbar(it) }
+
+                            if (weather_state.message == "No internet Connection") {
+                                binding.errorLayout.root.visible()
+                            } else {
+                                binding.emptyLayout.root.visible()
                             }
-                            is ResponseState.Error -> {
-                                binding.loadingLay.loadingLayout.gone()
-                                weather_state.message?.let { binding.root.snackbar(it) }
+
+                        }
+                        is ResponseState.Loading -> {
+                            binding.loadingLay.loadingLayout.visible()
+                        }
+                    }
+
+
+                }
+            }
+
+
+            weatherForecast.observe(viewLifecycleOwner) { forecastState ->
+                when (forecastState) {
+                    is ResponseState.Success -> {
+                        binding.recProg.gone()
+                        UnhideViewFields()
+                        forecastState.data?.let { dataList ->
+                            weatherForecastAdapter.submitList(dataList)
+                            if (dataList.isEmpty()) {
+                                binding.emptyLayout.root.visible()
+                            } else {
+                                binding.emptyLayout.root.gone()
                             }
-                            is ResponseState.Loading->{
-                                binding.loadingLay.loadingLayout.visible()
-                            }
+
                         }
 
-
+                    }
+                    is ResponseState.Error -> {
+                        binding.recProg.gone()
+                        forecastState.message?.let {
+                            binding.root.snackbar(it)
+                            hideViewFields(it)
+                        }
+                    }
+                    is ResponseState.Loading -> {
+                            binding.recProg.visible()
                     }
                 }
+
+            }
+
+
         }
+
 
     }
 
@@ -101,16 +147,19 @@ class HomeFragment : Fragment() {
 
         binding.weatherInText.text = data?.name
         binding.dateText.text = homeViewModel.currentSystemTime()
-        binding.weatherTemperature.text = data?.main?.temp.toString()+"°C"
-        binding.weatherMinMax.text = data?.main?.temp_max.toString()+"°"+"/"+data?.main?.temp_min.toString()+"°"
+        binding.weatherTemperature.text = data?.main?.temp.toString() + "°C"
+        binding.weatherMinMax.text =
+            data?.main?.temp_max.toString() + "°" + "/" + data?.main?.temp_min.toString() + "°"
         binding.weatherMain.text = data?.weather?.get(0)?.description
-        binding.humidityText.text = data?.main?.humidity.toString()+"%"
-        binding.pressureText.text= data?.main?.pressure.toString()+"hPa"
-        binding.windSpeedText.text =data?.wind?.speed.toString()+"m/s"
-        context?.let { binding.weatherIcon.getIconResources(it,data?.weather?.get(0)?.description) }
-
-
-
+        binding.humidityText.text = data?.main?.humidity.toString() + "%"
+        binding.pressureText.text = data?.main?.pressure.toString() + "hPa"
+        binding.windSpeedText.text = data?.wind?.speed.toString() + "m/s"
+        context?.let {
+            binding.weatherIcon.getIconResources(
+                it,
+                data?.weather?.get(0)?.description
+            )
+        }
 
     }
 
@@ -119,17 +168,20 @@ class HomeFragment : Fragment() {
         (activity as MainActivity).locationLiveData.observeOnce(viewLifecycleOwner, { location ->
             if (location != null) {
                 homeViewModel.getWeatherByLocation(location)
+                homeViewModel.getWeatherForecastByLocation(location)
             } else {
-                binding.root.snackbar("Error")
+                binding.root.snackbar("Error!, cannot fetch your location")
             }
         })
     }
 
 
-
     private fun setViews() {
 
         binding.background.getBackgroundImage(Uri.parse((activity as MainActivity).mySharedPrefrences.getBrackgroundImage()))
+        binding.forecastRecyclerview.apply {
+            adapter = weatherForecastAdapter
+        }
 
 
     }
@@ -172,6 +224,29 @@ class HomeFragment : Fragment() {
         }
 
     }
+
+
+    fun hideViewFields(error:String?){
+
+        if (error == "No internet Connection") {
+            binding.errorLayout.root.visible()
+            binding.emptyLayout.root.gone()
+        } else {
+            binding.emptyLayout.root.visible()
+            binding.errorLayout.root.gone()
+        }
+        binding.forecastRecyclerview.gone()
+        binding.homeImg.gone()
+
+    }
+    fun UnhideViewFields(){
+        binding.forecastRecyclerview.visible()
+        binding.homeImg.visible()
+        binding.errorLayout.root.gone()
+        binding.emptyLayout.root.gone()
+    }
+
+
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

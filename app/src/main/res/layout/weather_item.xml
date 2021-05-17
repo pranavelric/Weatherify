@@ -1,45 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+android:background="@android:color/transparent"
+    >
+
 
         <com.skydoves.elasticviews.ElasticCardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="8dp"
-            app:cardBackgroundColor="@color/primary_transparent"
             android:elevation="12dp"
             app:cardView_duration="250"
             app:cardView_scale="0.8"
             android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginStart="@dimen/_8sdp"
             android:layout_marginBottom="@dimen/_8sdp"
-            >
+    >
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:background="@color/background_transparent"
+                >
 
                 <ImageView
                     android:layout_width="170dp"
                     android:layout_height="124dp"
                     android:layout_alignParentStart="true"
                     android:layout_marginEnd="40dp"
-                    android:src="@drawable/ic_big_cloud" />
+                    android:src="@drawable/ic_big_cloud"
+                    app:tint="@color/clouds_color"
+
+                    />
 
                 <ImageView
                     android:layout_width="56dp"
                     android:layout_height="56dp"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/ic_big_cloud" />
+                    android:src="@drawable/ic_big_cloud"
+                    app:tint="@color/clouds_color"
+
+                    />
 
                 <ImageView
                     android:layout_width="170dp"
                     android:layout_height="124dp"
                     android:layout_alignParentEnd="true"
-                    android:src="@drawable/ic_cloud" />
+                    android:src="@drawable/ic_cloud"
+                    app:tint="@color/clouds_color"
+                    />
 
 
                 <TextView
@@ -83,7 +100,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/weather_description"
                     android:layout_marginStart="10dp"
-                    android:textColor="@color/text_color"
+                    android:textColor="@color/card_icons_color"
                     android:layout_marginTop="25dp"
                     android:layout_marginEnd="140dp"
                     android:text="36°C"
@@ -107,6 +124,7 @@
                         android:layout_width="wrap_content"
                         />
                     <TextView
+                        android:id="@+id/humidity_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
@@ -125,6 +143,7 @@
                      />
 
                     <TextView
+                        android:id="@+id/pressure_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
@@ -142,6 +161,7 @@
                         android:layout_width="wrap_content"/>
 
                     <TextView
+                        android:id="@+id/wind_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
@@ -153,10 +173,12 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/weather_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="16 May"
                     android:text="16 May"
+                    android:textSize="12sp"
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="5dp"
                     android:textColor="@color/text_color"
@@ -165,5 +187,7 @@
                     android:layout_below="@id/weather_details" />
             </RelativeLayout>
         </com.skydoves.elasticviews.ElasticCardView>
-    </LinearLayout>
 
+
+
+</LinearLayout>

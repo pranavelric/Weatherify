@@ -7,7 +7,7 @@ data class ResponseWeatherForecast(
     @Json(name ="cod")
     val cod:String?,
     @Json(name ="list")
-    val daily: List<NetworkWeatherForecast>?,
+    val list: List<NetworkWeatherForecast>?,
     @Json(name="city")
     val city:City?
 
@@ -26,7 +26,7 @@ data class NetworkWeatherForecast(
     val main: Main?,
 
     @Json(name = "dt_txt")
-    val dateText: String?,
+    val dt_txt: String?,
 
     @Json(name = "sys")
     val sys: SysPod?,

@@ -2,7 +2,7 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/error_layout"
+    android:id="@+id/empty_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
@@ -15,18 +15,18 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_error" />
+        android:src="@drawable/ic_empty_bro" />
 
 
 
     <TextView
-        android:id="@+id/error"
+        android:id="@+id/empty_error"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/_8sdp"
         android:gravity="center"
-        android:text="Network Error"
+        android:text="Weather forecast is unavailable for this date"
         android:textColor="@color/text_color"
         android:textSize="24sp"
         android:textStyle="bold" />

@@ -135,7 +135,7 @@ class WeatherRemoteDataSourceImpl @Inject constructor(private val weatherApi: We
                 val result =
                     weatherApi.getWeatherForecastByCityName(name)
                 if (result.isSuccessful) {
-                    val weather = result.body()?.daily
+                    val weather = result.body()?.list
                     ResponseState.Success(weather)
                 } else {
                     ResponseState.Success(null)
@@ -159,7 +159,7 @@ class WeatherRemoteDataSourceImpl @Inject constructor(private val weatherApi: We
                         coord.lon.toString()
                     )
                 if (result.isSuccessful) {
-                    val weather = result.body()?.daily
+                    val weather = result.body()?.list
                     ResponseState.Success(weather)
                 } else {
                     ResponseState.Success(null)
