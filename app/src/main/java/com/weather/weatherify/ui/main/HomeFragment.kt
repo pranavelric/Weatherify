@@ -2,7 +2,6 @@ package com.weather.weatherify.ui.main
 
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -14,10 +13,10 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.movies.animefied.utils.ResponseState
 import com.weather.weatherify.R
 import com.weather.weatherify.adapters.WeatherForecastAdapter
-import com.weather.weatherify.data.model.Main
 import com.weather.weatherify.data.model.ResponseWeather
 import com.weather.weatherify.databinding.FragmentHomeBinding
 import com.weather.weatherify.ui.activity.MainActivity
+import com.weather.weatherify.ui.search.SearchFragment
 import com.weather.weatherify.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -64,8 +63,6 @@ class HomeFragment : Fragment() {
     private fun getData() {
         binding.loadingLay.loadingLayout.visible()
         initiateRefresh()
-
-
     }
 
     private fun setClickListeners() {
@@ -73,6 +70,13 @@ class HomeFragment : Fragment() {
             binding.loadingLay.loadingLayout.visible()
             initiateRefresh()
             binding.swipeRefreshId.isRefreshing = false
+        }
+
+        binding.weatherForecast.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_weatherForecastFragment)
+        }
+        binding.searchFab.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
         }
     }
 
@@ -82,6 +86,7 @@ class HomeFragment : Fragment() {
                 weather?.let { weather_state ->
                     when (weather_state) {
                         is ResponseState.Success -> {
+                            binding.errorLayout.root.gone()
                             binding.loadingLay.loadingLayout.gone()
                             setData(weather_state.data)
 
@@ -92,8 +97,6 @@ class HomeFragment : Fragment() {
 
                             if (weather_state.message == "No internet Connection") {
                                 binding.errorLayout.root.visible()
-                            } else {
-                                binding.emptyLayout.root.visible()
                             }
 
                         }
@@ -131,7 +134,7 @@ class HomeFragment : Fragment() {
                         }
                     }
                     is ResponseState.Loading -> {
-                            binding.recProg.visible()
+                        binding.recProg.visible()
                     }
                 }
 
@@ -149,7 +152,7 @@ class HomeFragment : Fragment() {
         binding.dateText.text = homeViewModel.currentSystemTime()
         binding.weatherTemperature.text = getTemp(data?.main?.temp)
         binding.weatherMinMax.text =
-            getTemp(data?.main?.temp_max)  + "/" + getTemp(data?.main?.temp_min)
+            getTemp(data?.main?.temp_max) + "/" + getTemp(data?.main?.temp_min)
         binding.weatherMain.text = data?.weather?.get(0)?.description
         binding.humidityText.text = data?.main?.humidity.toString() + "%"
         binding.pressureText.text = data?.main?.pressure.toString() + "hPa"
@@ -184,13 +187,13 @@ class HomeFragment : Fragment() {
         }
     }
 
-    fun getTemp(temp:Double?): String {
+    fun getTemp(temp: Double?): String {
 
-        var mTemp:String = ""
-        if( (activity as MainActivity).mySharedPrefrences.getUnitsOfMeasurement()==Constants.FAHRENHEIT)
+        var mTemp: String = ""
+        if ((activity as MainActivity).mySharedPrefrences.getUnitsOfMeasurement() == Constants.FAHRENHEIT)
             mTemp = temp?.let { convertCelsiusToFahrenheit(it) }.toString()
         else
-            mTemp = temp?.toString()+"°C"
+            mTemp = temp?.toString() + "°C"
         return mTemp
     }
 
@@ -216,10 +219,10 @@ class HomeFragment : Fragment() {
 
                     if (slideOffset < 0.5F) {
                         binding.tempView.alpha = 0.5F
-                        binding.fragmentListalarmsAddAlarm.show()
+                        binding.searchFab.show()
                     } else {
                         binding.tempView.alpha = (slideOffset)
-                        binding.fragmentListalarmsAddAlarm.hide()
+                        binding.searchFab.hide()
                     }
                     bottomSheet.setPadding(
                         0,
@@ -234,7 +237,7 @@ class HomeFragment : Fragment() {
     }
 
 
-    fun hideViewFields(error:String?){
+    fun hideViewFields(error: String?) {
 
         if (error == "No internet Connection") {
             binding.errorLayout.root.visible()
@@ -247,7 +250,8 @@ class HomeFragment : Fragment() {
         binding.homeImg.gone()
 
     }
-    fun UnhideViewFields(){
+
+    fun UnhideViewFields() {
         binding.forecastRecyclerview.visible()
         binding.homeImg.visible()
         binding.errorLayout.root.gone()
@@ -255,13 +259,15 @@ class HomeFragment : Fragment() {
     }
 
 
-
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
             R.id.action_settings -> {
                 findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)
+                return true
+            }
+            R.id.action_forecast -> {
+                findNavController().navigate(R.id.action_homeFragment_to_weatherForecastFragment)
                 return true
             }
 

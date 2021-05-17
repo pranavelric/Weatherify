@@ -6,6 +6,9 @@
         android:id="@+id/action_settings"
         android:title="Settings" />
     <item
+        android:id="@+id/action_forecast"
+        android:title="Forecast" />
+    <item
         android:id="@+id/action_share"
         android:title="share" />
 

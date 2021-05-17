@@ -304,7 +304,7 @@
                 android:gravity="center"
                 app:layout_scrollFlags="enterAlways"
                 app:menu="@menu/home_menu"
-                app:title="@string/app_name">
+                app:title="Weather forecast">
 
             </androidx.appcompat.widget.Toolbar>
 
@@ -361,16 +361,27 @@
                     tools:itemCount="1"
                     android:nestedScrollingEnabled="true"
                     tools:listitem="@layout/weather_item"
-
+android:layout_marginTop="@dimen/_4sdp"
                     />
-
-
                 <ImageView
                     android:id="@+id/home_img"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_weather_pana"
                     />
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Weather forecast"
+                    app:backgroundTint="@color/primary"
+                    android:padding="@dimen/_8sdp"
+                    android:layout_margin="@dimen/_8sdp"
+                    android:id="@+id/weather_forecast"
+                    app:rippleColor="@color/background"
+                    app:cornerRadius="@dimen/_4sdp"
+                    />
+
+
 
 
             </LinearLayout>
@@ -383,7 +394,7 @@
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fragment_listalarms_addAlarm"
+        android:id="@+id/search_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
@@ -399,7 +410,7 @@
     <include
         android:id="@+id/loading_lay"
         layout="@layout/loading_layout"
-
+android:visibility="gone"
       />
 
 

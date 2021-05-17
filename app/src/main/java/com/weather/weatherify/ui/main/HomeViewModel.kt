@@ -23,9 +23,6 @@ import java.util.*
 class HomeViewModel @ViewModelInject constructor(val repository: WeatherRepository,val networkHelper: NetworkHelper) : ViewModel() {
 
 
-    private val _isLoading: MutableLiveData<Boolean> = MutableLiveData()
-    val isLoading: LiveData<Boolean> get() = _isLoading
-
 
     private val _weatherData: MutableLiveData<ResponseState<ResponseWeather?>> = MutableLiveData()
     val weatherData: LiveData<ResponseState<ResponseWeather?>> get() = _weatherData

@@ -10,6 +10,8 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.snackbar.Snackbar
 import java.text.SimpleDateFormat
 import java.util.*
@@ -112,7 +114,12 @@ fun getTimeFromMillis(timeInMillis: Long): String {
 
 }
 
-
+inline fun FragmentManager.open(block: FragmentTransaction.() -> Unit) {
+    beginTransaction().apply {
+        block()
+        commit()
+    }
+}
 
 
 

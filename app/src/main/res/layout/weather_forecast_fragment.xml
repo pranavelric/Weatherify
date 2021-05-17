@@ -1,13 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.weatherforecast.WeatherForecastFragment">
 
-    <TextView
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/forecast_swipe_refresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        android:background="@color/background_transparent"
+        tools:context=".ui.weatherforecast.WeatherForecastFragment">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/clear" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background_transparent" />
+
+        <ProgressBar
+            android:id="@+id/rec_prog"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:elevation="@dimen/_4sdp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/primary"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <include
+            android:id="@+id/empty_layout"
+            layout="@layout/empty_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/calendarView"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/error_layout"
+            layout="@layout/error_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/calendarView"
+            android:visibility="gone"
+           />
+
+        <com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar
+
+            android:id="@+id/calendarView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:layout_marginEnd="4dp"
+            app:buttonLeft_drawable="@drawable/ic_arrow_left"
+            app:buttonLeft_drawableTintColor="@color/icon_color"
+            app:buttonRight_drawable="@drawable/ic_arrow_right"
+            app:buttonRight_drawableTintColor="@color/icon_color"
+            app:eventColor="@color/icon_color"
+            app:expandIconColor="@color/icon_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:primaryColor="@color/background"
+            app:selectedItem_background="@drawable/circle_orange_solid_background"
+            app:selectedItem_textColor="#000"
+            app:textColor="@color/text_color"
+            app:todayItem_background="@drawable/circle_blue_solid_background"
+            app:todayItem_textColor="#FFF" />
+
+
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/forecast_recyclerview"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="1dp"
+            android:clipToPadding="false"
+            app:layoutManager="com.stone.vega.library.VegaLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/calendarView"
+            tools:listitem="@layout/weather_item" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
