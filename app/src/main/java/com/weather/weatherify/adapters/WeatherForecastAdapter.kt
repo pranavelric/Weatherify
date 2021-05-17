@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.weather.weatherify.data.model.NetworkWeatherForecast
 import com.weather.weatherify.databinding.WeatherItemBinding
+import com.weather.weatherify.ui.activity.MainActivity
+import com.weather.weatherify.utils.Constants
+import com.weather.weatherify.utils.convertCelsiusToFahrenheit
 import com.weather.weatherify.utils.getIconResources
 import com.weather.weatherify.utils.getTimeFromMillis
 
@@ -25,15 +28,29 @@ lateinit var context:Context
             binding.weatherDescription.text = weatherForecast.weather.get(0).description
             binding.weatherIcon.getIconResources(context, weatherForecast.weather[0].main)
             binding.weatherTime.text = weatherForecast.dt_txt
-            binding.cityTemp.text = weatherForecast.main?.temp.toString()+ "°C"
+            binding.cityTemp.text =getTemp(weatherForecast.main?.temp)
             binding.humidityText.text = weatherForecast.main?.humidity.toString()+"%"
             binding.pressureText.text = weatherForecast.main?.pressure.toString()+ "hPa"
             binding.windText.text = weatherForecast.wind?.speed.toString()+ "m/s"
 
 
+
         }
 
+        fun getTemp(temp:Double?): String {
+            val sp = context.getSharedPreferences(Constants.SHARED_PREFRENCE, 0)
+            var mTemp:String = ""
+            if( sp.getString(Constants.UNITS_OF_MEASURE, Constants.CELSIUS)==Constants.FAHRENHEIT)
+                mTemp = temp?.let { convertCelsiusToFahrenheit(it) }.toString()
+            else
+                mTemp = temp?.toString()+"°C"
+            return mTemp
+        }
+
+
+
     }
+
 
 
     class WeatherForecastDiffCallBack : DiffUtil.ItemCallback<NetworkWeatherForecast>() {

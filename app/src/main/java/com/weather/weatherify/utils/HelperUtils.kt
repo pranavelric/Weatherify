@@ -12,6 +12,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import com.github.pwittchen.weathericonview.WeatherIconView
 import com.weather.weatherify.R
+import java.text.DecimalFormat
 
 
 fun checkAboveOreo(): Boolean {
@@ -170,6 +171,18 @@ fun WeatherIconView.getIconResources(context: Context , condition: String?) {
         }
     }
 }
+
+
+fun convertCelsiusToFahrenheit(celsius: Double): String {
+    val f =  DecimalFormat().run {
+        applyPattern(".##")
+        parse(format(celsius.times(1.8).plus(32))).toDouble()
+    }
+
+    return "$f°F"
+
+}
+
 
 
 

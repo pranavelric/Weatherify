@@ -147,9 +147,9 @@ class HomeFragment : Fragment() {
 
         binding.weatherInText.text = data?.name
         binding.dateText.text = homeViewModel.currentSystemTime()
-        binding.weatherTemperature.text = data?.main?.temp.toString() + "°C"
+        binding.weatherTemperature.text = getTemp(data?.main?.temp)
         binding.weatherMinMax.text =
-            data?.main?.temp_max.toString() + "°" + "/" + data?.main?.temp_min.toString() + "°"
+            getTemp(data?.main?.temp_max)  + "/" + getTemp(data?.main?.temp_min)
         binding.weatherMain.text = data?.weather?.get(0)?.description
         binding.humidityText.text = data?.main?.humidity.toString() + "%"
         binding.pressureText.text = data?.main?.pressure.toString() + "hPa"
@@ -182,8 +182,16 @@ class HomeFragment : Fragment() {
         binding.forecastRecyclerview.apply {
             adapter = weatherForecastAdapter
         }
+    }
 
+    fun getTemp(temp:Double?): String {
 
+        var mTemp:String = ""
+        if( (activity as MainActivity).mySharedPrefrences.getUnitsOfMeasurement()==Constants.FAHRENHEIT)
+            mTemp = temp?.let { convertCelsiusToFahrenheit(it) }.toString()
+        else
+            mTemp = temp?.toString()+"°C"
+        return mTemp
     }
 
     private fun setSlidingBehaviour() {
