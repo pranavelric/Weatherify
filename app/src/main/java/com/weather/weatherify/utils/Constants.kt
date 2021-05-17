@@ -18,7 +18,7 @@ object Constants {
 
     const val GPS_REQUEST_CHECK_SETTINGS = 102
     const val API_KEY_QUERY = "appid"
-    const val API_KEY_VALUE = "f6c3ad76ffa170293b68f73828d72a9a"
+    const val API_KEY_VALUE = "your api key here"
     const val LOCATION_LONGITUDE = "LOCATION_LONGITUDE"
     const val LOCATION_LATITUDE = "LOCATION_LATITUDE"
 
