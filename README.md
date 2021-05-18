@@ -2,6 +2,11 @@
 
 Weatherify fetches data from the OpenWeatherMap API to provide real time weather information. Weatherfiy is implemented using the MVVM single activity architecture, Retrofit2, Dagger-Hilt, LiveData, Coroutines, Room, Navigation Components, View  Binding and some other libraries from the Android Jetpack. 
 
+# Download apk
+<a href="https://docs.google.com/uc?export=download&id=1-XPagklzPX3pCXbsRk82NP7uy9rH9XmL">
+<img src="screenshots/logo.png" alt="logo" width="10%" >
+</a>
+
 # Setup API Key
 - Visit openweathermap.org to get your API Key
 - Open app/src/main/java/com/weather/weatherify/utils/Constants.kt 
